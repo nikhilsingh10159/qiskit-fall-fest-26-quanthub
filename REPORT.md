@@ -5,7 +5,7 @@
 **Team Name:** Quanthub  
 **Team Members:** Aniket Gurjar, Ruchika Patil, Nikhil Singh, Amit Dubey
 **Affiliation:** IIPS DAVV, Indore  
-**Repository:** [Insert Public GitHub URL]  
+**Repository:**(https://github.com/nikhilsingh10159/qiskit-fall-fest-26-quanthub.git)  
 **Submission Tag:** `v1.0`  
 
 ---

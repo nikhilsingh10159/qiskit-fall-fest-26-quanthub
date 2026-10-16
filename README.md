@@ -3,9 +3,9 @@
 **Identifying the Hidden Structure of Sealed Quantum Black Boxes**  
 IBM Qiskit Fall Fest 2026 | QC@IITI · IIT Indore | Industry Challenge by QryptoNox
 
-**Team Name:** [Insert Team Name]  
-**Team Members:** [Member 1, Member 2, Member 3, Member 4]  
-**Repository:** [Insert Public GitHub URL]  
+**Team Name:** Quanthub  
+**Team Members:** Aniket Gurjar, Ruchika Patil, Nikhil Singh, Amit Dubey  
+**Repository:**(https://github.com/nikhilsingh10159/qiskit-fall-fest-26-quanthub.git) 
 **Submission Tag:** `v1.0`  
 
 ---
