@@ -1,0 +1,5 @@
+# Quantum Oracle Forensics - Requirements
+# Python 3.10+ required
+qiskit>=2.0.0,<3.0.0
+numpy>=2.0.0
+scipy>=1.12.0

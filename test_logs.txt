@@ -1,0 +1,148 @@
+================================================================================
+QUANTUM ORACLE FORENSICS: COMPREHENSIVE TEST SUITE AND DIAGNOSTICS
+IBM Qiskit Fall Fest 2026 | QC@IITI | Industry Challenge by QryptoNox
+Timestamp: 2026-10-16 16:40:21
+================================================================================
+
+[PART 1] Verifying Public Reference Examples...
+--- Linear Checks ---
+f(0) = 1 expected 1
+f(1) = 1 expected 1
+f(2) = 0 expected 0
+f(255) = 1 expected 1
+--- Simon Checks ---
+f(5) = 5 expected 5
+f(108) = 5 expected 5
+f(105) = 0 expected 0
+f(200) = 161 expected 161
+--- Simon2 Checks ---
+f(0), f(15), f(49), f(62) = 0 0 0 0 expected 0 0 0 0
+f(1) = 1 expected 1
+f(200) = 199 expected 199
+--- Perm Checks ---
+f(0) = 11 expected 11
+f(1) = 48 expected 48
+f(2) = 85 expected 85
+f(255) = 230 expected 230
+--- Grover Checks ---
+f(173) = 1 expected 1
+f(0) = 0 expected 0
+--- Constant Checks ---
+f(0) = 1 expected 1
+f(100) = 1 expected 1
+
+ALL REFERENCE EXAMPLES MATCH EXACTLY!
+Simulator class ready.
+  [PASS] linear (a=178, b=1)            -> Predicted: (linear, [178, 1]) | Queries: 19
+  [PASS] simon (s=105)                  -> Predicted: (simon, 105) | Queries: 52
+  [PASS] simon2 (H=[15, 49, 62])        -> Predicted: (simon2, [15, 49, 62]) | Queries: 56
+  [PASS] perm (37x + 11 mod 256)        -> Predicted: (perm, None) | Queries: 60
+  [PASS] grover (t=173)                 -> Predicted: (grover, 173) | Queries: 52
+  [PASS] constant (c=1)                 -> Predicted: (constant, 1) | Queries: 15
+Reference Examples Result: 6/6 passed.
+
+[PART 2] Running 80-Oracle Evaluation under Standard Noise (4% misfire, 2% readout flip)...
+Family constant  : 10/10 (100.0%) | Avg Queries: 34.2
+FAILED balanced #2: expected ('balanced', None), got (randfun, None) [q=60]
+Family balanced  :  9/10 ( 90.0%) | Avg Queries: 56.1
+Family linear    : 10/10 (100.0%) | Avg Queries: 19.0
+FAILED grover #10: expected ('grover', 105), got (constant, 0) [q=53]
+Family grover    :  9/10 ( 90.0%) | Avg Queries: 35.4
+FAILED randfun #2: expected ('randfun', None), got (grover, 246) [q=41]
+FAILED randfun #3: expected ('randfun', None), got (linear, [125, 0]) [q=19]
+FAILED randfun #4: expected ('randfun', None), got (linear, [16, 0]) [q=19]
+FAILED randfun #8: expected ('randfun', None), got (grover, 142) [q=41]
+Family randfun   :  6/10 ( 60.0%) | Avg Queries: 55.3
+FAILED simon #3: expected ('simon', 193), got (perm, None) [q=60]
+FAILED simon #5: expected ('simon', 200), got (simon2, [10, 194, 200]) [q=56]
+Family simon     :  8/10 ( 80.0%) | Avg Queries: 54.5
+FAILED simon2 #5: expected ('simon2', [2, 108, 110]), got (simon, 2) [q=52]
+FAILED simon2 #6: expected ('simon2', [46, 159, 177]), got (simon, 159) [q=56]
+Family simon2    :  8/10 ( 80.0%) | Avg Queries: 56.5
+FAILED perm #8: expected ('perm', None), got (simon, 12) [q=52]
+FAILED perm #10: expected ('perm', None), got (simon2, [26, 195, 217]) [q=56]
+Family perm      :  8/10 ( 80.0%) | Avg Queries: 60.0
+
+============================================================
+Overall Accuracy:       68/80 (85.0%)
+Worst-Family Accuracy:  60.0%
+Mean Queries (Correct): 44.9 / 60
+Query Saving:           25.1%
+============================================================
+
+[PART 3] Running 80-Oracle Evaluation under Stress Noise (8% misfire, 4% readout flip)...
+FAILED constant #3: expected ('constant', 1), got (constant, None) [q=60]
+FAILED constant #6: expected ('constant', 1), got (balanced, None) [q=60]
+Family constant  :  8/10 ( 80.0%) | Avg Queries: 30.9
+FAILED balanced #6: expected ('balanced', None), got (randfun, None) [q=53]
+FAILED balanced #8: expected ('balanced', None), got (randfun, None) [q=53]
+Family balanced  :  8/10 ( 80.0%) | Avg Queries: 54.8
+FAILED linear #6: expected ('linear', [63, 1]), got (balanced, None) [q=60]
+Family linear    :  9/10 ( 90.0%) | Avg Queries: 19.0
+FAILED grover #5: expected ('grover', 142), got (constant, 0) [q=53]
+FAILED grover #8: expected ('grover', 169), got (randfun, None) [q=60]
+FAILED grover #10: expected ('grover', 254), got (randfun, None) [q=60]
+Family grover    :  7/10 ( 70.0%) | Avg Queries: 42.3
+FAILED randfun #4: expected ('randfun', None), got (grover, 107) [q=29]
+FAILED randfun #10: expected ('randfun', None), got (balanced, None) [q=60]
+Family randfun   :  8/10 ( 80.0%) | Avg Queries: 54.8
+FAILED simon #2: expected ('simon', 243), got (perm, None) [q=60]
+FAILED simon #3: expected ('simon', 54), got (perm, None) [q=60]
+FAILED simon #5: expected ('simon', 207), got (simon2, [38, 207, 233]) [q=56]
+FAILED simon #6: expected ('simon', 70), got (perm, None) [q=60]
+FAILED simon #7: expected ('simon', 109), got (simon2, [42, 71, 109]) [q=56]
+FAILED simon #9: expected ('simon', 9), got (simon2, [9, 182, 191]) [q=56]
+FAILED simon #10: expected ('simon', 101), got (perm, None) [q=60]
+Family simon     :  3/10 ( 30.0%) | Avg Queries: 56.0
+FAILED simon2 #1: expected ('simon2', [24, 169, 177]), got (perm, None) [q=60]
+FAILED simon2 #2: expected ('simon2', [125, 191, 194]), got (simon2, [120, 186, 194]) [q=56]
+FAILED simon2 #3: expected ('simon2', [17, 239, 254]), got (simon, 17) [q=52]
+FAILED simon2 #4: expected ('simon2', [62, 68, 122]), got (perm, None) [q=60]
+FAILED simon2 #5: expected ('simon2', [115, 182, 197]), got (perm, None) [q=60]
+FAILED simon2 #6: expected ('simon2', [49, 204, 253]), got (simon, 49) [q=52]
+FAILED simon2 #7: expected ('simon2', [67, 179, 240]), got (perm, None) [q=60]
+FAILED simon2 #8: expected ('simon2', [50, 208, 226]), got (simon, 50) [q=60]
+FAILED simon2 #9: expected ('simon2', [31, 135, 152]), got (simon, 152) [q=56]
+Family simon2    :  1/10 ( 10.0%) | Avg Queries: 56.0
+FAILED perm #1: expected ('perm', None), got (simon2, [108, 182, 218]) [q=56]
+FAILED perm #4: expected ('perm', None), got (simon, 120) [q=52]
+FAILED perm #10: expected ('perm', None), got (simon2, [102, 134, 224]) [q=56]
+Family perm      :  7/10 ( 70.0%) | Avg Queries: 58.9
+
+============================================================
+Overall Accuracy:       51/80 (63.7%)
+Worst-Family Accuracy:  10.0%
+Mean Queries (Correct): 43.6 / 60
+Query Saving:           27.3%
+============================================================
+
+[PART 4] Evaluating Strategy Baselines...
+Circuit builder helpers compiled.
+Adaptive Solver (Ours)       | Acc:  85.9% | Worst:  62.5% | Avg Q: 43.7
+Classical-Only Strategy      | Acc:  40.6% | Worst:   0.0% | Avg Q: 60.0
+Single-Algorithm Strategy    | Acc:  48.4% | Worst:   0.0% | Avg Q: 60.0
+Non-Adaptive Strategy        | Acc:  43.8% | Worst:   0.0% | Avg Q: 45.4
+Random Guessing Baseline     | Acc:  15.6% | Worst:   0.0% | Avg Q:  0.0
+
+[PART 5] Evaluating Accuracy as a Function of Query Budget...
+Budget = 20                  | Acc:  54.7% | Worst:   0.0% | Avg Q: 17.3
+Budget = 30                  | Acc:  67.2% | Worst:   0.0% | Avg Q: 24.5
+Budget = 40                  | Acc:  79.7% | Worst:  12.5% | Avg Q: 31.7
+Budget = 50                  | Acc:  70.3% | Worst:  12.5% | Avg Q: 38.7
+Budget = 60                  | Acc:  81.2% | Worst:  50.0% | Avg Q: 44.2
+
+[PART 6] Confusion Matrix (from Standard Noise Run):
+True \ Pred  | const | balan | linea | grove | randf | simon | simon | perm 
+----------------------------------------------------------------------------
+constant     |    10 |     0 |     0 |     0 |     0 |     0 |     0 |     0
+balanced     |     0 |     9 |     0 |     0 |     1 |     0 |     0 |     0
+linear       |     0 |     0 |    10 |     0 |     0 |     0 |     0 |     0
+grover       |     1 |     0 |     0 |     9 |     0 |     0 |     0 |     0
+randfun      |     0 |     0 |     2 |     2 |     6 |     0 |     0 |     0
+simon        |     0 |     0 |     0 |     0 |     0 |     8 |     1 |     1
+simon2       |     0 |     0 |     0 |     0 |     0 |     2 |     8 |     0
+perm         |     0 |     0 |     0 |     0 |     0 |     1 |     1 |     8
+
+================================================================================
+ALL DIAGNOSTICS AND VALIDATIONS COMPLETE.
+================================================================================
